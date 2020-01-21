@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: insight-pod
+  labels:
+    demo: k8s-handson
+    role: insights-server
+spec:
+  containers:
+  - name: nginx-server
+    image: nginx
+    imagePullPolicy: IfNotPresent

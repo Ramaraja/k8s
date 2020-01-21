@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-probe-tcp
+  labels:
+    demo: k8s-handson
+spec:
+  containers:
+  - name: liveness-probe-tcp
+    image: k8s.gcr.io/goproxy:0.1
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 8080
+    livenessProbe:
+      tcpSocket:
+        port: 8080
+      initialDelaySeconds: 15
+      periodSeconds: 20

@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: downward-api
+  labels:
+    demo: k8s-handson
+  annotations:
+    hash: ff5aee67920e9615aef804ed0db9d0dfaebfb9f54ca093ddc16c67b3834baaf0
+    release: https://github.com/kubernetes/minikube/releases/tag/v0.33.1
+    iso: d5443bcdef74d1839d48facca8de8d6bf42199a2b9b827972ec82237e2e54c88
+spec:
+  containers:
+  - name: downward-api
+    image: python:alpine
+    imagePullPolicy: IfNotPresent
+    env:
+      - name: POD_IP
+        valueFrom:
+          fieldRef:
+            fieldPath: status.podIP
+    volumeMounts:
+      - name: podinfo
+        mountPath: /etc/podinfo
+        readOnly: false
+  volumes:
+    - name: podinfo
+      downwardAPI:
+        items:
+          - path: "labels"
+            fieldRef:
+              fieldPath: metadata.labels
+          - path: "annotations"
+            fieldRef:
+              fieldPath: metadata.annotations
+    

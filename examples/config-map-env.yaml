@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-map-env-demo
+  labels:
+    demo: k8s-handson
+spec:
+  containers:
+  - name: config-map-env-demo
+    image: nginx
+    imagePullPolicy: IfNotPresent
+    envFrom:
+      - configMapRef:
+          name: aws-credentials
+
+# use config map created inside the def
