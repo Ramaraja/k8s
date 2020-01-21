@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: genesys
+  name: genesys
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: genesys
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: genesys
+    spec:
+      containers:
+      - image: kulbhushanmayer/genesys:1.0
+        name: genesys
+      tolerations:
+      - key: "taintdemo"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
