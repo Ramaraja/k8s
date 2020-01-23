@@ -3,7 +3,6 @@ entries:
   helmapp:
   - apiVersion: v1
     appVersion: "1.0"
-    created: null
     description: A Helm chart test
     name: helmapp
     urls:
