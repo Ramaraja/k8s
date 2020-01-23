@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: aws-credentials
 data:
-  AWS_ACCESS_KEY_ID: AKIAJSIE27KKMHXI3BJQ
-  AWS_SECRET_ACCESS_KEY: 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
+  AWS_ACCESS_KEY_ID: test
+  AWS_SECRET_ACCESS_KEY: test
