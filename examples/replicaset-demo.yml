@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  name: hostname-rs-demo
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        demo: k8s-handson
+        app: hostname-app
+    spec:
+      containers:
+        - name: hostname-app
+          image: hostname-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+      

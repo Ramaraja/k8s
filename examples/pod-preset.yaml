@@ -1,0 +1,22 @@
+apiVersion: settings.k8s.io/v1alpha1
+kind: PodPreset
+metadata:
+  name: add-aws-secrets
+spec:
+  selector:
+    matchLabels:
+      role: presetdemo
+  env:
+    - name: DB_PORT
+      value: "6379"
+  envFrom:
+    - configMapRef:
+        name: aws-credentials
+  volumeMounts:
+    - mountPath: /etc/aws-credentials
+      readOnly: true
+      name: aws-credentials-volume
+  volumes:
+    - name: aws-credentials-volume
+      secret:
+         secretName: aws-credentials

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos-best-effort
+  labels:
+    demo: k8s-handson
+spec:
+  containers:
+  - name: qos-best-effort
+    image: nginx
+    imagePullPolicy: IfNotPresent

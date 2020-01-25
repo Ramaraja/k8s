@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-hooks-demo
+  labels:
+    demo: k8s-handson
+    app: nginx
+spec:
+  containers:
+  - name: lifecycle-hooks-demo
+    image: nginx
+    imagePullPolicy: IfNotPresent
+    lifecycle:
+      postStart:
+        exec:
+          command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+      preStop:
+        exec:
+          command: ["/usr/sbin/nginx", "-s", "quit"]

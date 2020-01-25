@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-probe-http
+  labels:
+    demo: k8s-handson
+spec:
+  containers:
+  - name: liveness
+    image: k8s.gcr.io/liveness
+    imagePullPolicy: IfNotPresent
+    args:
+    - /server
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 8080
+        httpHeaders:
+        - name: X-Custom-Header
+          value: k8s-probe
+      initialDelaySeconds: 1
+      periodSeconds: 2

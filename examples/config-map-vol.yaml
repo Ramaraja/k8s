@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-map-vol-demo
+  labels:
+    demo: k8s-handson
+spec:
+  containers:
+    - name: config-map-vol-demo
+      image: nginx
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: aws-config-volume
+          mountPath: /etc/aws-credentials
+  volumes:
+    - name: aws-config-volume
+      configMap:
+        name: aws-credentials
+        items:
+          - key: AWS_ACCESS_KEY_ID
+            path: id
+          - key: AWS_SECRET_ACCESS_KEY
+            path: secret
